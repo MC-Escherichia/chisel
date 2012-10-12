@@ -57,3 +57,10 @@ arguments for all LDA parameters"
   (doto (ObjectOutputStream. (FileOutputStream. outfile))
     (.writeObject instancelist)
     (.close)))
+
+(defn get-top-words
+  "Gets top `n` words for each topic. Defaults to 10 top words."
+  ([topicmodel]
+     (get-top-words topicmodel 10))
+  ([topicmodel n]
+     (map vec (.getTopWords topicmodel n))))
